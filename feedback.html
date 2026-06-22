@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedbacks | Liz Store</title>
+    <link rel="shortcut icon" href="favicon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="feedback.css">
+</head>
+
+<body class="body-feedbacks-apenas">
+
+    <main>
+        <section class="secao-feedbacks-puros">
+            
+            <div class="topo-feedbacks">
+                <h2>O que dizem sobre nós ✨</h2>
+                <p>Confira o carinho das nossas clientes! Separamos alguns feedbacks reais enviados por quem já usa e ama as nossas t-shirts.</p>
+            </div>
+            
+            <div class="grid-prints-feedback">
+                
+                <div class="card-print-story" onclick="abrirZoom(this)">
+                    <img src="f1.jpg" alt="Feedback 1">
+                </div>
+
+                <div class="card-print-story" onclick="abrirZoom(this)">
+                    <img src="f2.jpg" alt="Feedback 2">
+                </div>
+
+                <div class="card-print-story" onclick="abrirZoom(this)">
+                    <img src="f3.jpg" alt="Feedback 3">
+                </div>
+
+                <div class="card-print-story" onclick="abrirZoom(this)">
+                    <img src="f5.jpg" alt="Feedback 5">
+                </div>
+
+                <div class="card-print-story" onclick="abrirZoom(this)">
+                    <img src="f6.jpg" alt="Feedback 6">
+                </div>
+
+            </div>
+            
+        </section>
+    </main>
+
+    <footer class="rodape-feedbacks">
+        <div class="container-voltar-baixo">
+            <a href="index.html" class="btn-voltar">← Voltar para a Loja</a>
+        </div>
+        
+        <p class="insta-link-footer">
+            <a href="https://www.instagram.com/s/aGlnaGxpZ2h0OjE4MTY0MzgxOTE0NDEzNTY0?story_media_id=3865753640556773673_55250681860&igsh=MXZjb2J1cGFmOTNidA==" target="_blank">
+                <svg viewBox="0 0 24 24" class="logo-insta-svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+                Ver Destaques no @lizstore.tshirts
+            </a>
+        </p>
+    </footer>
+
+    <div id="zoom-modal" class="zoom-modal" onclick="fecharZoom()">
+        <span class="fechar-zoom">&times;</span>
+        <img class="conteudo-zoom" id="img-zoom">
+    </div>
+
+    <script>
+        function abrirZoom(elemento) {
+            const modal = document.getElementById("zoom-modal");
+            const imgModal = document.getElementById("img-zoom");
+            const imgCard = elemento.querySelector("img");
+            
+            modal.style.display = "flex";
+            imgModal.src = imgCard.src;
+        }
+
+        function fecharZoom() {
+            document.getElementById("zoom-modal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>

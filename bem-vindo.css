@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow: hidden; /* Remove barras de rolagem desnecessárias */
+}
+
+.secao-destaque {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden; 
+}
+
+.imagem-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; 
+}
+
+.sobreposicao {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.55); /* Contraste ideal para leitura do texto */
+    z-index: 1;
+}
+
+/* Camada das partículas (fica por trás do texto para não bloquear cliques) */
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.conteudo-destaque {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* --- ANIMAÇÃO DE ENTRADA SUAVE (Efeito Cascata) --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titulo-marca {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.subtitulo-marca {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 45px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0; /* Começa oculto e surge na animação */
+    animation: fadeInUp 1.2s ease-out 0.4s forwards; /* Delay de 0.4s */
+}
+
+.botao-comprar {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    border: 2px solid #fff;
+    padding: 16px 45px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.35s ease-in-out;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out 0.8s forwards; /* Delay de 0.8s */
+}
+
+/* Efeito Hover Sutil no Botão */
+.botao-comprar:hover {
+    background-color: #fff;
+    color: #000;
+    transform: scale(1.04);
+    box-shadow: 0 10px 25px rgba(255, 255, 255, 0.15);
+}
+
+/* --- AJUSTES DE RESPONSIVIDADE (Telemóvel/Celular) --- */
+@media (max-width: 768px) {
+    .titulo-marca {
+        font-size: 2.3rem;
+        letter-spacing: 1px;
+        padding: 0 10px;
+    }
+    
+    .subtitulo-marca {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        margin-bottom: 35px;
+    }
+    
+    .botao-comprar {
+        padding: 14px 35px;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+    }
+}
