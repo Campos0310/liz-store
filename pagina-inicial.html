@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liz Store</title>
+    <link rel="shortcut icon" href="favicon.jpeg" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="alerta-frete-topo"
+        style="background: #fff3f3; color: #ff6b6b; text-align: center; padding: 10px; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; border-bottom: 1px solid #ffe3e3;">
+        📦 GANHE FRETE GRÁTIS LEVANDO 3 OU MAIS T-SHIRTS!
+    </div>
+
+    <header class="cabecalho">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="index.html" class="item-menu ativo">Início</a></li>
+                <li><a href="#destaques" class="item-menu">Destaques</a></li>
+                <li><button onclick="abrirModal()" class="btn-menu-destaque">Nossos Produtos</button></li>
+                <li><a href="feedback.html" class="item-menu">Feedback</a></li>
+            </ul>
+        </nav>
+
+        <div class="carrinho-icone" onclick="toggleCarrinho()">
+            🛒 <span id="contagem-carrinho">0</span>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="carrossel">
+            <div class="container-slides">
+                <div class="slide ativo">
+                    <img src="sunset carrosel.png" alt="Banner Sunset">
+                </div>
+                <div class="slide">
+                    <img src="limoncello carrosel.png" alt="Banner Limoncello">
+                </div>
+                <div class="slide">
+                    <img src="sardines carrossel.jpg" alt="Banner Sardines">
+                </div>
+            </div>
+
+            <button class="botao-anterior" onclick="mudarSlide(-1)">&#10094;</button>
+            <button class="botao-proximo" onclick="mudarSlide(1)">&#10095;</button>
+
+            <div class="indicadores">
+                <span class="indicador ativo" onclick="irParaSlide(0)"></span>
+                <span class="indicador" onclick="irParaSlide(1)"></span>
+                <span class="indicador" onclick="irParaSlide(2)"></span>
+            </div>
+        </div>
+
+        <section class="produtos-destaque" id="destaques">
+            <div class="titulo-secao">
+                <h2>Produtos em Destaque</h2>
+                <p>Os queridinhos da estação ✨</p>
+            </div>
+
+            <div class="container-produtos">
+                <div class="card-produto" data-categoria="Todos"
+                    data-descricao="T-shirt 100% algodão premium com estampa minimalista inspirada no pôr do sol da Califórnia. Toque suave e caimento perfeito para criar um look casual cheio de estilo.">
+                    <img src="Sunset California.jpeg" alt="Sunset California" onclick="abrirDetalhes(this)"
+                        style="cursor: pointer;">
+                    <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sunset California</h3>
+                    <p class="preco">R$ 34,99</p>
+                    <button>Comprar Agora</button>
+                </div>
+
+                <div class="card-produto" data-categoria="Todos"
+                    data-descricao="Estampa exclusiva Dolce Vita em tons vibrantes. Confeccionada em malha leve e macia, ideal para os dias frescos e momentos descontraídos.">
+                    <img src="liml.jpeg" alt="Limoncello Dolce Vita" onclick="abrirDetalhes(this)"
+                        style="cursor: pointer;">
+                    <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Limoncello Dolce Vita</h3>
+                    <p class="preco">R$ 34,99</p>
+                    <button>Comprar Agora</button>
+                </div>
+
+                <div class="card-produto" data-categoria="Coleção Sardines"
+                    data-descricao="Edição especial da Coleção Sardines em algodão penteado fio 30.1. Máximo conforto com uma atitude urbana e moderna na clássica cor preta.">
+                    <img src="Sardines Black Premium.jpeg" alt="Sardines Black Premium" onclick="abrirDetalhes(this)"
+                        style="cursor: pointer;">
+                    <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Black Premium plus size</h3>
+                    <p class="preco">R$ 44,99</p>
+                    <button>Comprar Agora</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="nova-colecao">
+            <div class="overlay-vidro">
+                <div class="conteudo-nova-colecao">
+                    <span class="subtitulo-tag">EXCLUSIVO🔥</span>
+                    <h2>Nova Coleção 2026</h2>
+                    <p>Peças minimalistas, modernas e feitas para destacar o seu style.</p>
+                    <button class="botao-colecao-moderno" onclick="abrirModal()">
+                        Ver Catálogo Completo <span>→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div id="modal-produtos" class="modal">
+            <div class="conteudo-modal">
+                <span class="botao-fechar" onclick="fecharModal()">&times;</span>
+
+                <div class="titulo-secao">
+                    <h2>Todos os Produtos</h2>
+                    <p>Explore o catálogo completo da Liz Store ✨</p>
+                </div>
+
+                <div class="filtros-modal"
+                    style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: space-between; margin-bottom: 25px; align-items: center;">
+                    <div class="categorias-botoes" style="display: flex; gap: 10px;">
+                        <button class="btn-filtro ativo" onclick="filtrarCategoria('Todos', this)">Todos</button>
+                        <button class="btn-filtro" onclick="filtrarCategoria('Plus Size', this)">Plus Size</button>
+                        <button class="btn-filtro" onclick="filtrarCategoria('Coleção Sardines', this)">Coleção
+                            Sardines</button>
+                    </div>
+
+                    <div class="busca-interna">
+                        <input type="text" id="busca-modal" placeholder="Filtrar nesta lista..."
+                            oninput="filtrarPorTexto()"
+                            style="padding: 8px 15px; border-radius: 20px; border: 1px solid #ddd; outline: none;">
+                    </div>
+                </div>
+
+                <p
+                    style="background: #fff3f3; color: #ff6b6b; text-align: center; padding: 8px; border-radius: 6px; font-size: 13px; font-weight: 600; margin-bottom: 20px;">
+                    📦 Ganhe Frete Grátis levando 3 ou mais t-shirts!
+                </p>
+
+                <div class="container-produtos" id="lista-produtos-modal">
+                    <div class="card-produto" data-categoria="Plus Size"
+                        data-descricao="Edição especial da Coleção Sardines em algodão penteado fio 30.1. Máximo conforto com uma atitude urbana e moderna na clássica cor preta.">
+                        <img src="Sardines Black Premium.jpeg" alt="Sardines Black Premium"
+                            onclick="abrirDetalhes(this)" style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Black Premium plus size</h3>
+                        <p class="preco">R$ 44,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Plus Size"
+                        data-descricao="A nossa clássica estampa Sardines adaptada com modelagem Plus Size confortável. Tecido fresco e solto de alta qualidade para o dia a dia.">
+                        <img src="sardines branco gg.jpeg" alt="Sardines Branco GG" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Branco Plus Size</h3>
+                        <p class="preco">R$ 44,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="T-shirt conceitual Bon Appétit. Algodão macio com corte moderno, ideal para dar um toque divertido e elegante aos teus looks do dia a dia.">
+                        <img src="Bon Appétit.jpeg" alt="Bon Appétit" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Bon Appétit</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="Estampa exclusiva Dolce Vita em tons vibrantes. Confeccionada em malha leve e macia, ideal para os dias frescos e momentos descontraídos.">
+                        <img src="liml.jpeg" alt="Limoncello Dolce Vita" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Limoncello Dolce Vita</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="Inspirada no azul do oceano. Estampa artística exclusiva da linha Sardines com acabamento impecável e alta durabilidade de cor.">
+                        <img src="Sardines Ocean Blue.jpeg" alt="Sardines Ocean Blue" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Ocean Blue</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="T-shirt na cor verde oliva com arte clássica vintage de conservas. Estilo retro minimalista que combina com tudo.">
+                        <img src="Sardines Olive Can.jpeg" alt="Sardines Olive Can" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Olive Can</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="Estampa de listras horizontais icónica aliada ao design Sardines Black. Confeccionada em malha premium reforçada de ombro a ombro.">
+                        <img src="Sardines Stripes Black.jpeg" alt="Sardines Stripes Black"
+                            onclick="abrirDetalhes(this)" style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Stripes Black</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="Variação Off-White elegante da nossa linha de listras. Tecido extremamente leve, confortável e perfeito para um visual clean e sofisticado.">
+                        <img src="Sardines Stripes Off-White.jpeg" alt="Sardines Stripes Off-White"
+                            onclick="abrirDetalhes(this)" style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Stripes Off-White</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="Uma explosão de estilo na cor vermelho tomate vintage. Arte gráfica autêntica e marcante para quem gosta de expressar personalidade no visual.">
+                        <img src="The Best Sardines Tomato.jpeg" alt="The Best Sardines Tomato"
+                            onclick="abrirDetalhes(this)" style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">The Best Sardines Tomato</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Coleção Sardines"
+                        data-descricao="A clássica t-shirt branca indispensável. Malha penteada 100% algodão pura com a ilustração oficial que deu início à nossa coleção.">
+                        <img src="Sardines brancas 2.jpeg" alt="Sardines Brancas" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sardines Brancas</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="T-shirt 100% algodão premium com estampa minimalista inspirada no pôr do sol da Califórnia. Toque suave e caimento perfeito para criar um look casual cheio de estilo.">
+                        <img src="Sunset California.jpeg" alt="Sunset California" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Sunset California</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="Estampa urbana inspirada nas icónicas vistas dos arranha-céus de Nova Iorque. Para os amantes da cultura urbana e do estilo Streetwear moderno.">
+                        <img src="New York Rooftops.jpeg" alt="New York Rooftops" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">New York Rooftops</h3>
+                        <p class="preco">R$ 34,99</p>
+                        <button>Comprar Agora</button>
+                    </div>
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="A t-shirt essencial que não pode faltar no guarda-roupa. Com corte clássico e gola em ribana, ela une o conforto do algodão premium à versatilidade que o seu dia a dia pede.">
+                        <img src="tshirt-offwhite.jpeg" alt="T-shirt Premium Off-White" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">T-shirt Premium Off-White</h3>
+                        <p class="preco">R$ 34,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 39,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="Estilo urbano e despojado na medida certa. Com modelagem max oversized, ombros caídos e caimento solto, é a peça perfeita para criar looks modernos e cheios de personalidade.">
+                        <img src="tshirt-max-oversized.jpeg" alt="T-shirt Max Oversized" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">T-shirt Max Oversized</h3>
+                        <p class="preco">R$ 39,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 44,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="O básico elevado ao nível premium. Com uma estampa animal print de onça super moderna e sofisticada, esta peça oferece o ajuste e elegância que combinam com tudo.">
+                        <img src="tshirt-onca.jpeg" alt="T-shirt Premium Onça" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">T-shirt Premium Onça</h3>
+                        <p class="preco">R$ 34,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 39,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="A dose perfeita de estilo e sofisticação. Feita em tule macio de alta qualidade, ela cria sobreposições incríveis para transformar qualquer look básico em uma super produção.">
+                        <img src="blusa-tule.jpeg" alt="Blusa de Tule Premium" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Blusa de Tule Premium</h3>
+                        <p class="preco">R$ 34,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 39,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="O equilíbrio perfeito entre o despojado e o fashion. Com mangas alongadas e o corte cropped ideal, traz leveza e atitude para as suas combinações.">
+                        <img src="cropped-oversized.jpeg" alt="Cropped Oversized" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Cropped Oversized</h3>
+                        <p class="preco">R$ 34,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 39,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="Sofisticação e conforto impecáveis. Com uma estética minimalista inspirada nas principais tendências europeias, este tricô em modal possui toque extremamente macio e caimento perfeito.">
+                        <img src="trico-listrado.jpeg" alt="Tricô Modal Listrado (Zara Insp.)"
+                            onclick="abrirDetalhes(this)" style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Tricô Modal Listrado (Zara Insp.)
+                        </h3>
+                        <p class="preco">R$ 139,90 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 149,90 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+
+                    <div class="card-produto" data-categoria="Todos"
+                        data-descricao="O toque de elegância que transforma qualquer visual. Com shape ajustado e gola alta clássica inspirada na Zara, é a peça curinga perfeita para composições minimalistas.">
+                        <img src="gola-alta-zara.jpeg" alt="Gola Alta Lisa (Zara Insp.)" onclick="abrirDetalhes(this)"
+                            style="cursor: pointer;">
+                        <h3 onclick="abrirDetalhes(this)" style="cursor: pointer;">Gola Alta Lisa (Zara Insp.)</h3>
+                        <p class="preco">R$ 34,99 <span
+                                style="font-size: 11px; color: #777; font-weight: normal; display: block;">(R$ 44,99 à
+                                prazo)</span></p>
+                        <button>Comprar Agora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="carrinho-lateral" class="carrinho-lateral">
+            <div class="carrinho-topo">
+                <h3>Seu Carrinho</h3>
+                <span class="fechar-carrinho" onclick="toggleCarrinho()">&times;</span>
+            </div>
+
+            <div id="itens-carrinho" class="itens-carrinho">
+                <p class="carrinho-vazio">Seu carrinho está vazio 😢</p>
+            </div>
+
+            <div class="carrinho-rodape">
+                <div class="frete-info" id="frete-info">Adicione itens para ganhar Frete Grátis!</div>
+                <div class="total-container">
+                    <span>Total:</span>
+                    <span id="total-carrinho">R$ 0,00</span>
+                </div>
+                <button class="btn-finalizar" onclick="finalizarCompra()">Finalizar Compra via WhatsApp 💬</button>
+            </div>
+        </div>
+
+        <div id="modal-detalhes" class="modal">
+            <div class="conteudo-modal" style="max-width: 750px;">
+                <span class="botao-fechar" onclick="fecharModalDetalhes()">&times;</span>
+
+                <div class="detalhes-produto-wrapper">
+                    <div class="detalhes-imagem">
+                        <img id="detalhe-img" src="" alt="">
+                    </div>
+                    <div class="detalhes-info">
+                        <h2 id="detalhe-nome">Nome do Produto</h2>
+                        <p id="detalhe-preco" class="preco">R$ 0,00</p>
+                        <p id="detalhe-descricao" class="descricao-longa">Descrição...</p>
+                        <button id="detalhe-btn-comprar" class="botao-comprar-detalhe">Adicionar ao Carrinho 🛒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="rodape-principal">
+        <div class="container-rodape">
+
+            <div class="coluna-rodape sobre">
+                <h3>Liz Store</h3>
+                <p>Peças minimalistas, modernas e feitas para destacar o seu style. T-shirts 100% algodão premium com o
+                    carinho que você merece.</p>
+            </div>
+
+            <div class="coluna-rodape links">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="#destaques">Produtos em Destaque</a></li>
+                    <li><button onclick="abrirModal()" class="btn-rodape-modal">Ver Catálogo</button></li>
+                    <li><a href="feedback.html">Feedbacks das Clientes</a></li>
+                </ul>
+            </div>
+
+            <div class="coluna-rodape social">
+                <h3>Conecte-se Connosco</h3>
+                <p class="insta-link-rodape">
+                    <a href="https://www.instagram.com/lizstore.tshirts" target="_blank">
+                        <svg viewBox="0 0 24 24" class="logo-insta-svg">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                        </svg>
+                        @lizstore.tshirts
+                    </a>
+                </p>
+                <p class="suporte-rodape">Dúvidas? Chame-nos no WhatsApp!</p>
+            </div>
+
+        </div>
+
+        <div class="rodape-direitos">
+            <p>&copy; 2026 Liz Store - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5516994647468" class="whatsapp-minimalista" target="_blank" rel="noopener noreferrer">
+    <span class="ponto-status"></span>
+    <span class="texto-suporte">Suporte Online</span>
+</a>
+    <script src="script.js"></script>
+</body>
+
+</html>
